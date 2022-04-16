@@ -17,3 +17,8 @@ h5{
     background-color: rgb(236, 80, 132);
     color: white;
 }
+
+#error-sec{
+    color: red;
+    display: none;
+}

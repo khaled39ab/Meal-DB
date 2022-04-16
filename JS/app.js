@@ -1,3 +1,5 @@
+const errorSec = document.getElementById("error-sec");
+
 const loadMeal = () =>{
     const inputField = document.getElementById("input-field")
     const name = inputField.value;
@@ -6,12 +8,17 @@ const loadMeal = () =>{
     fetch(url)
     .then(res => res.json())
     .then (data => displayMeals(data.meals))
+    .catch(err => errorMessage());
 }
 
 document.getElementById("button-search").addEventListener("click", function(){
-    loadMeal()
+    loadMeal();
+    errorSec.style.display = 'none';
 });
 
+const errorMessage = () =>{
+    errorSec.style.display = 'block'
+}
 const displayMeals = meals =>{
     meals.forEach(meal =>{
        const searchResult = document.getElementById("search-result")
