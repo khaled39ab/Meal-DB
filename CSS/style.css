@@ -7,6 +7,8 @@ h1{
 h5{
     color: blueviolet;
 }
+
+/* search area style  */
 .search{
     width: 50%;
     display: flex;
@@ -18,6 +20,7 @@ h5{
     color: white;
 }
 
+/* error message style  */
 #error-sec{
     color: red;
     display: none;
