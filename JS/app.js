@@ -35,7 +35,6 @@ const errorMessage = () => {
 // display meal items 
 const displayMeals = meals => {
     meals.forEach(meal => {
-        // console.log(meal);
         const div = document.createElement("div");
         div.classList.add("col")
         div.innerHTML = `
@@ -51,6 +50,7 @@ const displayMeals = meals => {
     });
 };
 
+// load meal detail 
 const loadMealDetails = mealId => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
     fetch(url)
@@ -58,8 +58,9 @@ const loadMealDetails = mealId => {
         .then(data => displayDetails(data.meals[0]))
 };
 
+
+// display meal detail section 
 const displayDetails = mealDetail => {
-    console.log(mealDetail);
     mealDetailSec.innerHTML = `
     <div class="card">
         <img src="${mealDetail.strMealThumb}" class="card-img-top" alt="...">
