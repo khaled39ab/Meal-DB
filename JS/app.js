@@ -1,5 +1,6 @@
 const errorSec = document.getElementById("error-sec");
 const searchResult = document.getElementById("search-result");
+const mealDetailSec = document.getElementById("meal-detail");
 
 // load meal data 
 const loadMeal = () => {
@@ -10,7 +11,7 @@ const loadMeal = () => {
 
     if (searchText == '') {
 
-    } 
+    }
     else {
         fetch(url)
             .then(res => res.json())
@@ -34,10 +35,11 @@ const errorMessage = () => {
 // display meal items 
 const displayMeals = meals => {
     meals.forEach(meal => {
+        // console.log(meal);
         const div = document.createElement("div");
         div.classList.add("col")
         div.innerHTML = `
-        <div class="card">
+        <div onclick="loadMealDetails(${meal.idMeal})" class="card">
             <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${meal.strMeal}</h5>
@@ -49,3 +51,23 @@ const displayMeals = meals => {
     });
 };
 
+const loadMealDetails = mealId => {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayDetails(data.meals[0]))
+};
+
+const displayDetails = mealDetail => {
+    console.log(mealDetail);
+    mealDetailSec.innerHTML = `
+    <div class="card">
+        <img src="${mealDetail.strMealThumb}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">${mealDetail.strMeal}</h5>
+        <p class="card-text">${mealDetail.strInstructions.slice(0, 300)}</p>
+        <a href="${mealDetail.strYoutube}" class="btn btn-primary">Go to youtube</a>
+        </div>
+    </div>
+    `
+}
