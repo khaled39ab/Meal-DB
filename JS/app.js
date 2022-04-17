@@ -2,7 +2,7 @@ const errorSec = document.getElementById("error-sec");
 const searchResult = document.getElementById("search-result");
 const mealDetailSec = document.getElementById("meal-detail");
 
-// load meal data 
+// ---------------------   load meal data   --------------------- 
 const loadMeal = () => {
     const inputField = document.getElementById("input-field")
     const searchText = inputField.value;
@@ -20,19 +20,19 @@ const loadMeal = () => {
     }
 };
 
-// search button event handler
+// ---------------------   search button event handler   ---------------------
 document.getElementById("button-search").addEventListener("click", function () {
     loadMeal();
     errorSec.style.display = 'none';
     searchResult.innerHTML = "";
 });
 
-// error handler
+// ---------------------   error handler   ---------------------
 const errorMessage = () => {
     errorSec.style.display = 'block';
 };
 
-// display meal items 
+//---------------------   display meal items   ---------------------
 const displayMeals = meals => {
     meals.forEach(meal => {
         const div = document.createElement("div");
@@ -45,12 +45,12 @@ const displayMeals = meals => {
                 <p class="card-text">${meal.strInstructions.slice(0, 200)}</p>
             </div>
         </div>
-       `
+       `;
         searchResult.appendChild(div)
     });
 };
 
-// load meal detail 
+// ---------------------   load meal detail   ---------------------
 const loadMealDetails = mealId => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
     fetch(url)
@@ -59,7 +59,7 @@ const loadMealDetails = mealId => {
 };
 
 
-// display meal detail section 
+// ---------------------   display meal detail section   --------------------- 
 const displayDetails = mealDetail => {
     mealDetailSec.innerHTML = `
     <div class="card">
@@ -70,5 +70,5 @@ const displayDetails = mealDetail => {
         <a href="${mealDetail.strYoutube}" class="btn btn-primary">Go to youtube</a>
         </div>
     </div>
-    `
-}
+    `;
+};
